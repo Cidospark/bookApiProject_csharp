@@ -15,7 +15,12 @@ namespace bookApiProject.Services
     // the the base class here.
     public class BookDBContext : DbContext
     {
-        public BookDBContext(DbContextOptions<DbContext> options):base(options)
+        // BookDbContext inherits DbContext and is used as the datatype
+        // of the DbContextOptions options we are passing to the base class
+        // so that the base class can have access to all the members of the 
+        // BookDbContext class and help it do the magic of entity building
+        // and relationship management
+        public BookDBContext(DbContextOptions<BookDBContext> options):base(options)
         { 
             // this is how you define the pattern of operation
             // you wish to carryout with this class
@@ -62,5 +67,7 @@ namespace bookApiProject.Services
         }
 
         // after the above goto the start-up file and add DbContext as a service
+        // then open the package manager console under tools menu => NuGet Package Manager
+        // and run 'add-migration InitialDatabaseCreation' 
     }
 }
