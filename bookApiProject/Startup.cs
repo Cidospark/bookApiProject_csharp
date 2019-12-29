@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bookApiProject.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -35,7 +37,12 @@ namespace bookApiProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            // define connection string
             var connectionString = Configuration["connectionStrings:bookDbConnectionString"];
+
+            // add DbContext as a service
+            services.AddDbContext<BookDBContext>(c => c.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
