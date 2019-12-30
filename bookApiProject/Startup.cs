@@ -60,7 +60,7 @@ namespace bookApiProject
             //    await context.Response.WriteAsync("Hello World!");
             //});
 
-            context.SeedDataContext();
+            //context.SeedDataContext();
 
             app.UseMvc(); 
         }

@@ -10,7 +10,7 @@ using bookApiProject.Services;
 namespace bookApiProject.Migrations
 {
     [DbContext(typeof(BookDBContext))]
-    [Migration("20191229124732_InitialDatabaseCreation")]
+    [Migration("20191230001837_InitialDatabaseCreation")]
     partial class InitialDatabaseCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
