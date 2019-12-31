@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace bookApiProject.Services
 {
-    interface IBookRepository
+    public interface IBookRepository
     {
         ICollection<Book> GetBooks();
         Book GetBook(int bookId);
-        Book GetBook(string isbn);
+        Book GetBook(string bookIsbn);
         bool BookExists(int bookId);
-        bool BookExists(string isbn);
+        bool BookExists(string bookIsbn);
 
-        bool IsDuplicate(int bookId);
+        bool IsDuplicateIsbn(int bookId, string bookIsbn);
 
-        double GetBookRating(int bookId);
+        decimal GetBookRating(int bookId);
 
     }
 }
