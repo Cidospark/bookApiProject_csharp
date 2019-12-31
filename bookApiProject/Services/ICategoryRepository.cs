@@ -10,8 +10,8 @@ namespace bookApiProject.Services
     {
         ICollection<Category> GetCategories();
         Category GetCategory(int categoryId);
-        ICollection<Category> GetCategoriesOfABook(int bookId);
-        ICollection<Book> GetBooksForCategory(int categoryId);
+        ICollection<Category> GetAllCategoriesOfABook(int bookId);
+        ICollection<Book> GetAllBooksOfACategory(int categoryId);
         bool CategoryExists(int categoryId);
     }
 }
