@@ -9,7 +9,7 @@ namespace bookApiProject.Services
     public interface IReviewerRepository
     {
         ICollection<Reviewer> GetReviewers();
-        Reviewer GetReviewers(int reviewerId);
+        Reviewer GetReviewer(int reviewerId);
         ICollection<Review> GetReviewsByReviewer(int reviewerId);
         ICollection<Reviewer> GetReviewerOfAReview(int reviewId);
         bool ReviewerExists(int reviewerId);
