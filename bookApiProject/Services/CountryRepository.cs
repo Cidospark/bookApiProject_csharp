@@ -24,7 +24,7 @@ namespace bookApiProject.Services
 
         public ICollection<Author> GetAuthorsFromCountry(int countryId)
         {
-            return _countryContext.Authors.Where(c => c.Id == countryId).ToList();
+            return _countryContext.Authors.Where(c => c.Country.Id == countryId).ToList();
         }
 
         public ICollection<Country> GetCountries()
