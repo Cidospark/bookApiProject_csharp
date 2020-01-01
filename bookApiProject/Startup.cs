@@ -47,7 +47,7 @@ namespace bookApiProject
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IReviewerRepository, ReviewerRepository>();
-            //services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
 
         }
 
