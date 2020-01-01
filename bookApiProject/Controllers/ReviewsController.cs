@@ -75,8 +75,8 @@ namespace bookApiProject.Controllers
         }
 
 
-        //api/reviews/books/bookId
-        [HttpGet("books/{bookId}")]
+        //api/reviews/bookId/reviews
+        [HttpGet("{bookId}/reviews")]
         [ProducesResponseType(404)]
         [ProducesResponseType(400)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ReviewDto>))]
@@ -105,33 +105,29 @@ namespace bookApiProject.Controllers
         }
 
 
-        //api/reviews/books/bookId
-        [HttpGet("books/{bookId}")]
+        //api/reviews/reviewId/book
+        [HttpGet("{reviewId}/book")]
         [ProducesResponseType(404)]
         [ProducesResponseType(400)]
-        [ProducesResponseType(200, Type = typeof(ReviewDto))]
-        public IActionResult GetBookOfAReview(int bookId)
+        [ProducesResponseType(200, Type = typeof(BookDto))]
+        public IActionResult GetBookOfAReview(int reviewId)
         {
             // validate book
 
-            var reviews = _reviewRepository.GetReviewsOfABook(bookId);
+            var book = _reviewRepository.GetBookOfAReview(reviewId);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var reviewsDto = new List<ReviewDto>();
-            foreach (var review in reviews)
+            var bookDto = new BookDto()
             {
-                reviewsDto.Add(new ReviewDto()
-                {
-                    Id = review.Id,
-                    HeadLine = review.HeadLine,
-                    ReviewText = review.ReviewText,
-                    Rating = review.Rating
-                });
-            }
+                Id = book.Id,
+                Isbn = book.Isbn,
+                Title = book.Title,
+                DatePublished = book.DatePublished
+            };
 
-            return Ok(reviewsDto);
+            return Ok(bookDto);
         }
 
 
