@@ -16,11 +16,13 @@ namespace bookApiProject.Controllers
         /****************************Initial setups***********************************/
             // bring in the interface to use
             private ICategoryRepository _categoryRepository;
+            private IBookRepository _bookRepository;
 
-            // inject it into the constructor
-            public CategoriesController(ICategoryRepository categoryRepository)
+        // inject it into the constructor
+        public CategoriesController(ICategoryRepository categoryRepository, IBookRepository bookRepository)
             {
                 _categoryRepository = categoryRepository;
+                _bookRepository = bookRepository;
             }
         /*****************************setup is ends****************************/
 
@@ -94,6 +96,8 @@ namespace bookApiProject.Controllers
         public IActionResult GetAllCategoriesOfABook(int bookId)
         {
             // check if book exists
+            if (!_bookRepository.BookExists(bookId))
+                return NotFound();
 
             // get result
             var categories = _categoryRepository.GetAllCategoriesOfABook(bookId);
