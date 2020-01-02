@@ -46,5 +46,15 @@ namespace bookApiProject.Services
             // we first get the author id where author id is equal
             // the select country of gotten author id
         }
+
+        public bool IsDuplicateCountryName(int countryId, string countryName)
+        {
+            var country = _countryContext.Countries.Where(
+               c => c.Name.Trim().ToUpper() == countryName.Trim().ToUpper() 
+               && c.Id != countryId
+             ).FirstOrDefault();
+
+            return country == null ? false : true;
+        }
     }
 }

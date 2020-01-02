@@ -53,7 +53,7 @@ namespace bookApiProject.Services
         public bool IsDuplicateIsbn(int bookId, string bookIsbn)
         {
             var book = _bookContext.Books.Where(
-                b => b.Isbn == bookIsbn.Trim().ToUpper() && b.Id != bookId
+                b => b.Isbn.Trim().ToUpper() == bookIsbn.Trim().ToUpper() && b.Id != bookId
               ).FirstOrDefault();
 
             return book == null ? false : true;
