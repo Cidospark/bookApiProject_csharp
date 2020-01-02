@@ -37,8 +37,12 @@ namespace bookApiProject.Services
 
         public decimal GetBookRating(int bookId)
         {
-            return _bookContext.Reviews.Where(b => b.Book.Id == bookId)
-                .Select(r => r.Rating).FirstOrDefault();
+            var reviews = _bookContext.Reviews.Where(b => b.Book.Id == bookId);
+
+            if (reviews.Count() <= 0)
+                return 0;
+
+            return ((decimal)reviews.Sum(r => r.Rating) / reviews.Count());
         }
 
         public ICollection<Book> GetBooks()
@@ -48,7 +52,12 @@ namespace bookApiProject.Services
 
         public bool IsDuplicateIsbn(int bookId, string bookIsbn)
         {
-            throw new NotImplementedException();
+            var book = _bookContext.Books.Where(
+                b => b.Isbn == bookIsbn.Trim().ToUpper() && b.Id != bookId
+              ).FirstOrDefault();
+
+            return book == null ? false : true;
+
         }
     }
 }
